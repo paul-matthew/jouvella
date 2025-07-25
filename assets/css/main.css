@@ -4126,3 +4126,28 @@ input, select, textarea {
   display: block; /* Ensure it's not inline */
   margin-bottom: 2px; /* Reduce the spacing */
 }
+
+.team-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  text-align: center;
+  max-width: 200px;
+  border:solid black;
+  padding:5px;
+  background-color: #ebe6e0;
+  color:black;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.team-member img {
+  width: 100%;
+  max-width:170px;
+  height: 250px; /* consistent height */
+  object-fit: cover; /* ensures cropping if needed while keeping image proportional */
+  border-radius: 8px;
+}
