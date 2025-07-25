@@ -4132,22 +4132,41 @@ input, select, textarea {
   gap: 2rem;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 2rem;
 }
 
 .team-member {
   text-align: center;
-  max-width: 200px;
-  border:solid black;
-  padding:5px;
-  background-color: #ebe6e0;
-  color:black;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 220px;
+  background-color: #f9f7f5;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
 .team-member img {
   width: 100%;
-  max-width:170px;
-  height: 250px; /* consistent height */
-  object-fit: cover; /* ensures cropping if needed while keeping image proportional */
-  border-radius: 8px;
+  height: 250px;
+  object-fit: cover;
 }
+
+.team-member h5 {
+  font-size: 1.1rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.2rem;
+  color: #2b2b2b;
+}
+
+.team-member p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+}
+
