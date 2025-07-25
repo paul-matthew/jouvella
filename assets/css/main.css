@@ -4099,23 +4099,30 @@ input, select, textarea {
 
   /* Responsive iframe container */
 .iframe-container {
-	position: relative;
-	width: 100%;
-	max-width: 450px !important;
-	min-height:700px !important;
-	margin: 0 auto;     /* This centers it */
-	padding-bottom: 56.25%; /* 16:9 ratio */
-	overflow: hidden;
-	border:solid black;
+  position: relative;
+  width: 80vw;
+  height: 95vh;
+  overflow: hidden;
+  border: solid black;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+  
+  .field{
+	padding-top: 20px;
   }
-  
-  .iframe-container iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border: none;
-  }
-  
-  
+
+  .field label {
+  display: block; /* Ensure it's not inline */
+  margin-bottom: 2px; /* Reduce the spacing */
+}
