@@ -5,55 +5,50 @@
 */
 
 (function($) {
-
-	var	$window = $(window),
-		$body = $('body'),
-		$wrapper = $('#page-wrapper'),
-		$banner = $('#banner'),
-		$header = $('#header');
+	const $window = $(window),
+		  $body = $('body'),
+		  $wrapper = $('#page-wrapper'),
+		  $banner = $('#banner'),
+		  $header = $('#header');
 
 	// Breakpoints.
 	breakpoints({
-		xlarge:   [ '1281px',  '1680px' ],
-		large:    [ '981px',   '1280px' ],
-		medium:   [ '737px',   '980px'  ],
-		small:    [ '481px',   '736px'  ],
-		xsmall:   [ null,      '480px'  ]
+		xlarge: [ '1281px', '1680px' ],
+		large:  [ '981px',  '1280px' ],
+		medium: [ '737px',  '980px'  ],
+		small:  [ '481px',  '736px'  ],
+		xsmall: [ null,     '480px'  ]
 	});
 
-	// Play initial animations on page load.
-	$window.on('load', function() {
-		window.setTimeout(function() {
-			$body.removeClass('is-preload');
-		}, 100);
+	// Play initial animations on page load (faster load)
+	document.addEventListener('DOMContentLoaded', () => {
+		$body.removeClass('is-preload');
 	});
 
-	// Mobile?
-	if (browser.mobile)
-		$body.addClass('is-mobile');
-	else {
-		breakpoints.on('>medium', function() {
-			$body.removeClass('is-mobile');
-		});
-
-		breakpoints.on('<=medium', function() {
+	// Mobile class handling.
+	const setMobileClass = () => {
+		if (browser.mobile || breakpoints.active('<=medium')) {
 			$body.addClass('is-mobile');
-		});
-	}
+		} else {
+			$body.removeClass('is-mobile');
+		}
+	};
+	setMobileClass();
+	$window.on('resize', setMobileClass);
 
 	// Scrolly.
-	$('.scrolly')
-		.scrolly({
-			speed: 1500,
-			offset: $header.outerHeight()
-		});
+	$('.scrolly').scrolly({
+		speed: 1000, // Slightly faster scroll
+		offset: $header.outerHeight()
+	});
 
 	// Menu.
-	$('#menu')
+	const $menu = $('#menu');
+	$menu
 		.append('<a href="#menu" class="close"></a>')
 		.appendTo($body)
 		.panel({
-			delay: 500,
+			delay: 300, // Faster panel open/close
 			hideOnClick: true,
 			hideOnSwipe: true,
 			resetScroll: true,
@@ -63,32 +58,31 @@
 			visibleClass: 'is-menu-visible'
 		});
 
-	// Header.
+	// Header animation toggle.
 	if ($banner.length > 0 && $header.hasClass('alt')) {
-		$window.on('resize', function() { $window.trigger('scroll'); });
-
+		$window.on('resize', () => $window.trigger('scroll'));
 		$banner.scrollex({
-			bottom:		$header.outerHeight() + 1,
-			terminate:	function() { $header.removeClass('alt'); },
-			enter:		function() { $header.addClass('alt'); },
-			leave:		function() { $header.removeClass('alt'); }
+			bottom: $header.outerHeight() + 1,
+			terminate: () => $header.removeClass('alt'),
+			enter:     () => $header.addClass('alt'),
+			leave:     () => $header.removeClass('alt')
 		});
 	}
 
 	// === Modal Logic ===
 
-	// Open modal on trigger
+	// Open modal
 	$(document).on('click', '[data-modal-trigger]', function(e) {
 		e.preventDefault();
-		var modalID = $(this).data('modal-trigger');
-		$('#' + modalID).fadeIn(200).addClass('active');
+		const modalID = $(this).data('modal-trigger');
+		$('#' + modalID).fadeIn(150).addClass('active');
 	});
 
-	// Close modal on close button or background click
+	// Close modal
 	$(document).on('click', '.modal, .modal-close', function(e) {
 		if ($(e.target).is('.modal') || $(e.target).is('.modal-close')) {
-			$('.modal').fadeOut(200).removeClass('active');
+			$('.modal').fadeOut(150).removeClass('active');
 		}
 	});
-
 })(jQuery);
+
