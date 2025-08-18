@@ -4100,7 +4100,7 @@ input, select, textarea {
   /* Responsive iframe container */
 .iframe-container {
   position: relative;
-  width: 80vw;
+  width: 90vw;
   height: 95vh;
   overflow: hidden;
   border: solid black;
@@ -4115,6 +4115,11 @@ input, select, textarea {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+.youtube-container {
+  padding-bottom: 56.25%;     /* 16:9 aspect ratio */
+  height: 0;
 }
 
   
